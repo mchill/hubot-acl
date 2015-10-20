@@ -30,7 +30,7 @@ checkList = (list, user, role, text)->
 
 # create regex that matches any possible replies
 # modified version of Robot#respond regex
-regex = (robot)->
+regexer = (robot)->
   regex = /.*/
 
   re = regex.toString().split("/")
@@ -58,7 +58,7 @@ regex = (robot)->
   newRegex
 
 module.exports = (robot)->
-  regex = regex(robot)
+  regex = regexer(robot)
   robot.logger.debug "[hubot-acl] regex: " + regex
 
   robot.listeners.unshift new TextListener robot, regex, (msg)->
